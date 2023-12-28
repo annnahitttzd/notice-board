@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-
     public function login(Request $request)
     {
         $data = $request->validate([
@@ -18,14 +17,13 @@ class AdminController extends Controller
             'password' => 'required',
         ]);
         $admin = Admin::where('email', $data['email'])->first();
-
-
         if ($admin && Hash::check($data['password'], $admin->password)) {
             Auth::guard('admin')->login($admin);
-            return redirect()->route('stories.create');
+            return redirect()->route('stories.create',  ['adminEmail' => $admin->email]);
         }
         return back()->withErrors(['email' => 'Invalid credentials']);
     }
+
     public function logoutUser()
     {
         Auth::logout();

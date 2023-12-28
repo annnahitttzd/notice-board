@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\ApproveStory;
-use App\Models\StoryApproval;
+//use App\Models\StoryApproval;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -15,7 +15,6 @@ class SendStoryApprovalEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $story;
-
     public function __construct($story)
     {
     $this->story = $story;
@@ -23,7 +22,7 @@ class SendStoryApprovalEmail implements ShouldQueue
     public function handle(): void
     {
         $this->onQueue('emails');
-       Mail::to("recipient@example.com")->send(new ApproveStory($this->story));
+        Mail::to("recipient@example.com")->send(new ApproveStory($this->story));
 
     }
 }

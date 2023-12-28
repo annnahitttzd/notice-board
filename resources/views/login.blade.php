@@ -1,7 +1,6 @@
 @extends('layouts.app')
     <body class="antialiased">
     <h2>Login into Admin Area</h2>
-
     <form method="post" action="{{ route('admin.login') }}">
         @csrf
         <div class="mb-3">

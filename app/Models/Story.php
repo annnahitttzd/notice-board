@@ -12,6 +12,11 @@ class Story extends Model
         'title',
         'description',
         'approved',
-        'approve_token'
+        'approve_token',
+        'creator_id'
     ];
+    public function creator()
+    {
+        return $this->belongsTo(Admin::class, 'creator_id', 'id');
+    }
 }

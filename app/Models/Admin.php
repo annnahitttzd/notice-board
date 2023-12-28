@@ -13,4 +13,8 @@ class   Admin extends Authenticatable
         'email',
         'password'
     ];
+    public function stories()
+    {
+        return $this->hasMany(Story::class, 'creator_id', 'id');
+    }
 }

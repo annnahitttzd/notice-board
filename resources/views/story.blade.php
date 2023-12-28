@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <body>
+<h4 class=" text-primary font-weight-bold">{{$adminEmail}}</h4>
 <div class="container mt-5">
     <button class="btn btn-primary"><a href="{{route('approved.stories')}}" class="approved_stories">Approved stories</a></button>
     <button class="btn btn-primary"><a href="{{route('logout.user')}}" class="approved_stories">Log out</a></button>

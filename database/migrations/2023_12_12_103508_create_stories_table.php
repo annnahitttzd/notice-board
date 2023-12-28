@@ -17,13 +17,10 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->boolean('approved')->default(false);
             $table->text('approve_token')->nullable();
+            $table->integer('creator_id');
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('stories');

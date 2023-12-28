@@ -9,8 +9,6 @@ class SendEmails extends Command
 {
     protected $signature = 'send:email';
     protected $description = 'Command description';
-
-
     public function handle()
     {
         $stories = \App\Models\Story::where('approved', false)->get();

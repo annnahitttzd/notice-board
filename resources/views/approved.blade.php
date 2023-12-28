@@ -1,2 +1,1 @@
-
-<h1>story is approved</h1>
+<h1>Story is approved successfully</h1>
