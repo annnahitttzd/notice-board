@@ -13,14 +13,13 @@ class StoryController extends Controller
     public function create(Request $request)
     {
         $adminEmail = $request->get('adminEmail' );
-
         return view('story', compact('adminEmail'));
     }
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
-            'description' => 'required',
+            'description' => 'required|max:255',
         ]);
         if ($validatedData) {
             $uuid = Str::uuid()->toString();
@@ -37,13 +36,12 @@ class StoryController extends Controller
 
         return redirect('/admin/add-story')->with('success', 'Story added successfully!');
     }
-    public function approveStory(Request $request )
+    public function approveStory(Request $request)
      {
         $story = Story::where('approve_token', $request->approve_token)->firstOrFail();
-
-//         if ($story->approved) {
-//             return redirect()->route('approved.stories')->with('message', 'This story is already approved.');
-//         }
+         if ($story->approved) {
+             return redirect()->route('approved.stories')->with('message', 'This story is already approved.');
+         }
         $story->update(['approved' => 1]);
         broadcast(new StoryApproved($story));
         Auth::guard('admin')->login(Admin::find($story->creator_id));

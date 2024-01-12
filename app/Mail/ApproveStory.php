@@ -22,26 +22,5 @@ class ApproveStory extends Mailable
         return $this->view('email')
             ->subject('Approve Story');
     }
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-//
+
 }
-//    public function content(): Content
-//    {
-//        return new Content(
-//            view: 'view.name',
-//        );
-//    }
-// public function attachments(): array
-////    {
-////        return [];
-////    }
-///   public function envelope(): Envelope
-////    {
-////        return new Envelope(
-////            subject: 'Approve Story',
-////        );
-////    }

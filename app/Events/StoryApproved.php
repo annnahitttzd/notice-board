@@ -27,18 +27,4 @@ class StoryApproved implements ShouldBroadcast
             new PrivateChannel('approved-stories'),
         ];
     }
-//    public function broadcastWith(): array
-//    {
-//        return [
-//            'story' => [
-//                'id' => $this->story->id,
-//                'title' => $this->story->title,
-//                'description' => $this->story->description,
-//            ],
-//        ];
-//    }
-//    public function broadcastAs(): string
-//    {
-//        return 'story.approved';
-//    }
 }
