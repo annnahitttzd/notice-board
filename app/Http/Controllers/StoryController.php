@@ -19,7 +19,7 @@ class StoryController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required|max:3000',
         ]);
         if ($validatedData) {
             $uuid = Str::uuid()->toString();

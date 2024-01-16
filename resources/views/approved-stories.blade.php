@@ -37,7 +37,7 @@
                             '<div class="story" id="' + tagId + '">' +
                             '<h3>' + arr.title + '</h3>' +
                             arr.description +
-                            '<button class="btn btn-primary"><a href="{{route('delete.story', ['id' => $story->id])}}">Delete</a></button>' +
+                            '<button class="btn btn-primary delete-btn" data-story-id="' + id + '">Delete</button>' +
                             '</div>'
                         )
                     }
@@ -48,9 +48,29 @@
             }
         })
     }
-    setInterval(function () {
-        updateApprovedStories();
-    }, 5000);
+        $('.story-container').on('click', '.delete-btn', function () {
+            let storyId = $(this).data('story-id');
+            $.ajax({
+                url: "{{ route('delete.story', ['id' => '']) }}/" + storyId,
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    'Accept': 'application/json'
+                },
+                success: function (response) {
+                    $('#' + 'story_' + storyId).remove();
+                    console.log(response);
+                },
+                error: function (error) {
+                    console.error('Error deleting story:', error);
+                }
+            });
+        });
+
+            setInterval(function () {
+            updateApprovedStories();},
+            5000);
+
 
 
 

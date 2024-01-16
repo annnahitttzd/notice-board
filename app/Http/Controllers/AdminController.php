@@ -13,8 +13,8 @@ class AdminController extends Controller
     public function login(Request $request)
     {
         $data = $request->validate([
-            'email' => 'required',
-            'password' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
         ]);
         $admin = Admin::where('email', $data['email'])->first();
         if ($admin && Hash::check($data['password'], $admin->password)) {

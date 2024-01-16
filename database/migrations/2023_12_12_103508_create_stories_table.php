@@ -6,18 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
-            $table->text('title')->nullable();
+            $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->boolean('approved')->default(false);
             $table->text('approve_token')->nullable();
-            $table->integer('creator_id');
+            $table->foreign('creator_id')->references('id')->on('admins');
             $table->timestamps();
         });
     }
